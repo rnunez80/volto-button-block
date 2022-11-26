@@ -21,6 +21,10 @@ const messages = defineMessages({
     id: ' Inner Alignment',
     defaultMessage: 'Inner Alignment',
   },
+  Emphasis: {
+    id: 'Emphasis',
+    defaultMessage: 'Emphasis',
+  },
 });
 
 export const ButtonSchema = (props) => {
@@ -32,7 +36,7 @@ export const ButtonSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'href', 'inneralign'],
+        fields: ['title', 'href', 'inneralign','emphasis'],
       },
     ],
 
@@ -51,6 +55,16 @@ export const ButtonSchema = (props) => {
         title: props.intl.formatMessage(messages.innerAlign),
         widget: 'inner_align',
         default: 'left',
+      },
+      emphasis: {
+        title: props.intl.formatMessage(messages.Emphasis),
+        choices: [
+          ['primary', 'Primary'],
+          ['secondary', 'Secondary'],
+          ['tertiary', 'Tertiary'],
+          ['positive', 'Positive'],
+          ['negative', 'Negative'],
+        ],
       },
     },
     required: [],
