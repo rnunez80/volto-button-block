@@ -46,7 +46,7 @@ export const ButtonSchema = (props) => {
       },
       href: {
         title: props.intl.formatMessage(messages.ButtonLink),
-        widget: 'url',
+        widget: 'url'
       },
       inneralign: {
         title: props.intl.formatMessage(messages.innerAlign),
