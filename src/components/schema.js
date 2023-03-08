@@ -46,7 +46,11 @@ export const ButtonSchema = (props) => {
       },
       href: {
         title: props.intl.formatMessage(messages.ButtonLink),
-        widget: 'url'
+        required: true,
+        widget: 'object_browser',
+        mode: 'link',
+        selectedItemAttrs: ['Title', 'Description', 'hasPreviewImage'],
+        allowExternals: true,
       },
       inneralign: {
         title: props.intl.formatMessage(messages.innerAlign),
