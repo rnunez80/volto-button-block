@@ -35,14 +35,14 @@ const View = ({ data, isEditMode, className }) => {
         to={data.href.length > 0 ? flattenToAppURL(data.href[0]['@id']) : ''}
         condition={!isEditMode}
       >
-        <Button className={(cx('button'), data.align)} className={data.emphasis}>
+        <Button className={(cx('button'), data.align, data.emphasis)}>
           {data.title || intl.formatMessage(messages.ButtonText)}
         </Button>
       </ConditionalLink>
     ) : (
       data.href.length > 0 && (
         <a href={flattenToAppURL(data.href[0]['@id'])}>
-          <Button className={(cx('button'), data.align)} className={data.emphasis}>
+          <Button className={(cx('button'), data.align, data.emphasis)}>
             {data.title || intl.formatMessage(messages.ButtonText)}
           </Button>
         </a>
