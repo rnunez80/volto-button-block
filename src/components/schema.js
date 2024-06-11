@@ -25,6 +25,10 @@ const messages = defineMessages({
     id: 'Emphasis',
     defaultMessage: 'Emphasis',
   },
+  Size: {
+    id: 'Size',
+    defaultMessage: 'Size',
+  },
 });
 
 export const ButtonSchema = (props) => {
@@ -36,7 +40,7 @@ export const ButtonSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'href', 'inneralign','emphasis'],
+        fields: ['title', 'href', 'inneralign', 'emphasis', 'size'],
       },
     ],
 
@@ -65,6 +69,16 @@ export const ButtonSchema = (props) => {
           ['tertiary', 'Tertiary'],
           ['positive', 'Positive'],
           ['negative', 'Negative'],
+        ],
+      },
+      size: {
+        title: props.intl.formatMessage(messages.Size),
+        default: 'medium',
+        choices: [
+          ['tiny', 'Tiny'],
+          ['medium', 'Medium'],
+          ['large', 'Large'],
+          ['huge', 'Huge'],
         ],
       },
     },
