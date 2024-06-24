@@ -68,7 +68,7 @@ export const ButtonSchema = (props) => {
           ['secondary', 'Secondary'],
           ['tertiary', 'Tertiary'],
           ['positive', 'Positive'],
-          ['negative', 'Negative'],
+          ['black', 'Black'],
         ],
       },
       size: {
