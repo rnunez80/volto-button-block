@@ -1,36 +1,24 @@
-import React, { Suspense } from 'react';
+import loadable from '@loadable/component';
 import circleMenuSVG from '@plone/volto/icons/circle-menu.svg';
 import './theme/main.less';
 
-// Use React.lazy to dynamically import the components
-const Edit = React.lazy(() => import('./components/Edit'));
-const View = React.lazy(() => import('./components/View'));
-const AlignWidget = React.lazy(() => import('./components/Widgets/AlignWidget'));
+// Use loadable to dynamically import the components
+const Edit = loadable(() => import('./components/Edit'));
+const View = loadable(() => import('./components/View'));
+const AlignWidget = loadable(() => import('./components/Widgets/AlignWidget'));
 
 const applyConfig = (config) => {
-  // Use Suspense with fallback to wrap the dynamically imported AlignWidget
-  config.widgets.widget.inner_align = (props) => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <AlignWidget {...props} />
-    </Suspense>
-  );
+  // Assign the dynamically imported AlignWidget directly to the config
+  config.widgets.widget.inner_align = AlignWidget;
 
-  // Use Suspense with fallback to wrap the dynamically imported view and edit components
+  // Assign the dynamically imported view and edit components to the config
   config.blocks.blocksConfig.__button = {
     id: '__button',
     title: 'Button',
     icon: circleMenuSVG,
     group: 'common',
-    view: (props) => (
-      <Suspense fallback={<div>Loading...</div>}>
-        <View {...props} />
-      </Suspense>
-    ),
-    edit: (props) => (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Edit {...props} />
-      </Suspense>
-    ),
+    view: View,
+    edit: Edit,
     restricted: false,
     mostUsed: true,
     sidebarTab: 1,
