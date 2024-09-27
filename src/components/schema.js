@@ -9,6 +9,10 @@ const messages = defineMessages({
     id: 'Title',
     defaultMessage: 'Title',
   },
+  ButtonDescription: {
+    id: 'Description',
+    defaultMessage: 'Description',
+  },
   ButtonLink: {
     id: 'Link',
     defaultMessage: 'Link',
@@ -40,13 +44,17 @@ export const ButtonSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'href', 'inneralign', 'emphasis', 'size'],
+        fields: ['title', 'description', 'href', 'inneralign', 'emphasis', 'size'],
       },
     ],
 
     properties: {
       title: {
         title: props.intl.formatMessage(messages.ButtonTitle),
+        required: true,
+      },
+      description: {
+        title: props.intl.formatMessage(messages.ButtonDescription),
       },
       href: {
         title: props.intl.formatMessage(messages.ButtonLink),
@@ -63,6 +71,7 @@ export const ButtonSchema = (props) => {
       },
       emphasis: {
         title: props.intl.formatMessage(messages.Emphasis),
+        default: 'primary',
         choices: [
           ['primary', 'Primary'],
           ['secondary', 'Secondary'],
