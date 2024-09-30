@@ -41,6 +41,13 @@ const View = ({ data, isEditMode, className }) => {
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
     </Button>
+  ) : isExternal ? (
+    <a href={url} target='_blank' rel='noopener noreferrer'>
+      <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
+        {data.title || intl.formatMessage(messages.ButtonText)}
+        {descriptionSpan}
+      </Button>
+    </a>
   ) : isInternal ? (
     <Link to={url} target='_self'>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
@@ -50,13 +57,6 @@ const View = ({ data, isEditMode, className }) => {
     </Link>
   ) : isMailto ? (
     <a href={url}>
-      <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
-        {data.title || intl.formatMessage(messages.ButtonText)}
-        {descriptionSpan}
-      </Button>
-    </a>
-  ) : isExternal ? (
-    <a href={url} target='_blank' rel='noopener noreferrer'>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
