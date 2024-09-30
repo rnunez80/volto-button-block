@@ -18,10 +18,11 @@ const View = ({ data, isEditMode, className }) => {
   // Determine if there is a link
   const hasLink = data.href && data.href.length > 0;
 
-  // Check if the link is internal, a mailto, or an external http(s) link
+  // Check if the link is internal, a mailto, an external http(s) link, or contains '@@download'
   const isInternal = hasLink && isInternalURL(data.href[0]['@id']);
   const isMailto = hasLink && data.href[0]['@id'].startsWith('mailto:');
-  const isExternal = hasLink && /^(http|https):/.test(data.href[0]['@id']);
+  const isDownload = hasLink && data.href[0]['@id'].includes('@@download');
+  const isExternal = hasLink && (/^(http|https):/.test(data.href[0]['@id']) || isDownload);
 
   // Flatten the URL if present
   const url = hasLink ? flattenToAppURL(data.href[0]['@id']) : '';
