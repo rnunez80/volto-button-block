@@ -17,15 +17,16 @@ const View = ({ data, isEditMode, className }) => {
 
   // Determine if there is a link
   const hasLink = data.href && data.href.length > 0;
+  const urlRaw = hasLink ? data.href[0]['@id'] : '';
 
-  // Check if the link is internal, a mailto, an external http(s) link, or contains '@@download'
-  const isInternal = hasLink && isInternalURL(data.href[0]['@id']);
-  const isMailto = hasLink && data.href[0]['@id'].startsWith('mailto:');
-  const isDownload = hasLink && data.href[0]['@id'].includes('@@download');
-  const isExternal = hasLink && (/^(http|https):/.test(data.href[0]['@id']) || isDownload);
+  // Check the type of link
+  const isMailto = hasLink && urlRaw.startsWith('mailto:');
+  const isDownload = hasLink && urlRaw.includes('@@download');
+  const isInternal = hasLink && isInternalURL(urlRaw);
+  const isExternal = hasLink && (/^(http|https):/.test(urlRaw) && !isDownload);
 
   // Flatten the URL if present
-  const url = hasLink ? flattenToAppURL(data.href[0]['@id']) : '';
+  const url = hasLink ? flattenToAppURL(urlRaw) : '';
 
   // Description span with line break
   const descriptionSpan = data.description ? (
@@ -41,7 +42,14 @@ const View = ({ data, isEditMode, className }) => {
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
     </Button>
-  ) : isExternal ? (
+  ) : isMailto ? (
+    <a href={url}>
+      <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
+        {data.title || intl.formatMessage(messages.ButtonText)}
+        {descriptionSpan}
+      </Button>
+    </a>
+  ) : isDownload ? (
     <a href={url} target='_blank' rel='noopener noreferrer'>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
@@ -49,14 +57,14 @@ const View = ({ data, isEditMode, className }) => {
       </Button>
     </a>
   ) : isInternal ? (
-    <Link to={url} target='_self'>
+    <Link to={url}>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
     </Link>
-  ) : isMailto ? (
-    <a href={url}>
+  ) : isExternal ? (
+    <a href={url} target='_blank' rel='noopener noreferrer'>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
