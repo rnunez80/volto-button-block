@@ -17,7 +17,17 @@ const View = ({ data, isEditMode, className }) => {
 
   // Determine if there is a link
   const hasLink = data.href && data.href.length > 0;
-  const urlRaw = hasLink ? data.href[0]['@id'] : '';
+  let urlRaw = '';
+  if (hasLink) {
+    if (Array.isArray(data.href)) {
+      urlRaw = data.href[0]?.['@id'] || data.href[0] || '';
+    } else {
+      urlRaw = data.href?.['@id'] || data.href || '';
+    }
+  }
+
+  // Guard against undefined when checking type
+  urlRaw = typeof urlRaw === 'string' ? urlRaw : '';
 
   // Check the type of link
   const isMailto = hasLink && urlRaw.startsWith('mailto:');

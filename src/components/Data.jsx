@@ -17,6 +17,12 @@ const ButtonData = (props) => {
     ? schemaEnhancer(ButtonSchema({ ...props, intl }), props)
     : ButtonSchema({ ...props, intl });
 
+  let normalizedData = { ...data };
+  if (normalizedData.href && Array.isArray(normalizedData.href)) {
+    normalizedData.href =
+      normalizedData.href[0]?.['@id'] || normalizedData.href[0] || '';
+  }
+
   return (
     <BlockDataForm
       schema={schema}
@@ -27,7 +33,7 @@ const ButtonData = (props) => {
           [id]: value,
         });
       }}
-      formData={data}
+      formData={normalizedData}
       fieldIndex={data.index}
       block={block}
     />
