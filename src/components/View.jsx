@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
+import { UniversalLink } from '@plone/volto/components';
 import { flattenToAppURL, isInternalURL } from '@plone/volto/helpers';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -67,12 +67,12 @@ const View = ({ data, isEditMode, className }) => {
       </Button>
     </a>
   ) : isInternal ? (
-    <Link to={url}>
+    <UniversalLink href={url}>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
-    </Link>
+    </UniversalLink>
   ) : isExternal ? (
     <a href={url} target='_blank' rel='noopener noreferrer'>
       <Button className={cx('button', data.align, data.emphasis)} size={data.size}>
