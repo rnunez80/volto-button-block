@@ -46,38 +46,36 @@ const View = ({ data, isEditMode, className }) => {
     </>
   ) : null;
 
-  const textStyle = data.textPosition ? { textAlign: data.textPosition } : {};
-
   // Determine the link element
   const linkElement = isEditMode ? (
-    <Button className={cx('button', data.align, data.emphasis)} size={data.size} style={textStyle}>
+    <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
     </Button>
   ) : isMailto ? (
     <a href={url}>
-      <Button className={cx('button', data.align, data.emphasis)} size={data.size} style={textStyle}>
+      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
     </a>
   ) : isDownload ? (
     <a href={url} target='_blank' rel='noopener noreferrer'>
-      <Button className={cx('button', data.align, data.emphasis)} size={data.size} style={textStyle}>
+      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size} >
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
     </a>
   ) : isInternal ? (
     <UniversalLink href={url}>
-      <Button className={cx('button', data.align, data.emphasis)} size={data.size} style={textStyle}>
+      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
     </UniversalLink>
   ) : isExternal ? (
     <a href={url} target='_blank' rel='noopener noreferrer'>
-      <Button className={cx('button', data.align, data.emphasis)} size={data.size} style={textStyle}>
+      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
         {data.title || intl.formatMessage(messages.ButtonText)}
         {descriptionSpan}
       </Button>
