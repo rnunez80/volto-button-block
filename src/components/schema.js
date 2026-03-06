@@ -22,7 +22,7 @@ const messages = defineMessages({
     defaultMessage: 'Alignment',
   },
   innerAlign: {
-    id: ' Inner Alignment',
+    id: ' Button Alignment',
     defaultMessage: 'Inner Alignment',
   },
   Emphasis: {
@@ -33,6 +33,10 @@ const messages = defineMessages({
     id: 'Size',
     defaultMessage: 'Size',
   },
+  textposition: {
+    id: 'textposition',
+    defaultMessage: 'Text Alignment',
+  }
 });
 
 export const ButtonSchema = (props) => {
@@ -44,7 +48,7 @@ export const ButtonSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'description', 'href', 'inneralign', 'emphasis', 'size'],
+        fields: ['title', 'description', 'href', 'inneralign', 'textPosition', 'emphasis', 'size'],
       },
     ],
 
@@ -66,6 +70,12 @@ export const ButtonSchema = (props) => {
         widget: 'inner_align',
         default: 'left',
       },
+      textPosition: {
+        title: props.intl.formatMessage(messages.textposition),
+        widget: 'align',
+        actions: ['center', 'left', 'right'],
+        default: 'left',
+      },
       emphasis: {
         title: props.intl.formatMessage(messages.Emphasis),
         default: 'primary',
@@ -74,7 +84,8 @@ export const ButtonSchema = (props) => {
           ['secondary', 'Secondary'],
           ['tertiary', 'Tertiary'],
           ['positive', 'Positive'],
-          ['black', 'Black'],
+          ['white', 'White'],
+          ['gray', 'Gray'],
         ],
       },
       size: {
