@@ -74,7 +74,7 @@ export const ButtonSchema = (props) => {
         title: props.intl.formatMessage(messages.textposition),
         widget: 'align',
         actions: ['center', 'left', 'right'],
-        default: 'left',
+        default: 'center',
       },
       emphasis: {
         title: props.intl.formatMessage(messages.Emphasis),
