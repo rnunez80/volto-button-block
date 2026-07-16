@@ -94,6 +94,9 @@
       ]
     }
   },
+  "peerDependencies": {
+    "@plone/volto": ">=19.1.5"
+  },
   "devDependencies": {
     "@plone/scripts": "^2.0.0",
     "release-it": "^14.14.2"

@@ -1,11 +1,9 @@
-import loadable from '@loadable/component';
 import circleMenuSVG from '@plone/volto/icons/circle-menu.svg';
 import './theme/main.less';
 
-// Use loadable to dynamically import the components
-const Edit = loadable(() => import('./components/Edit'));
-const View = loadable(() => import('./components/View'));
-const AlignWidget = loadable(() => import('./components/Widgets/AlignWidget'));
+import Edit from './components/Edit';
+import View from './components/View';
+import AlignWidget from './components/Widgets/AlignWidget';
 
 const applyConfig = (config) => {
   // Assign the dynamically imported AlignWidget directly to the config
