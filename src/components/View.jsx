@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import cx from 'classnames';
 import { UniversalLink } from '@plone/volto/components';
 import { flattenToAppURL, isInternalURL } from '@plone/volto/helpers';
@@ -46,45 +45,46 @@ const View = ({ data, isEditMode, className }) => {
     </>
   ) : null;
 
+  const buttonClasses = cx(
+    'ui button',
+    `btn-${data.emphasis || 'primary'}`,
+    data.align,
+    data.emphasis,
+    data.size,
+    data.textPosition,
+  );
+
   // Determine the link element
   const linkElement = isEditMode ? (
-    <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
+    <button type="button" className={buttonClasses}>
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
-    </Button>
+    </button>
   ) : isMailto ? (
-    <a href={url}>
-      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
-        {data.title || intl.formatMessage(messages.ButtonText)}
-        {descriptionSpan}
-      </Button>
+    <a href={url} className={buttonClasses}>
+      {data.title || intl.formatMessage(messages.ButtonText)}
+      {descriptionSpan}
     </a>
   ) : isDownload ? (
-    <a href={url} target='_blank' rel='noopener noreferrer'>
-      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size} >
-        {data.title || intl.formatMessage(messages.ButtonText)}
-        {descriptionSpan}
-      </Button>
+    <a href={url} target='_blank' rel='noopener noreferrer' className={buttonClasses}>
+      {data.title || intl.formatMessage(messages.ButtonText)}
+      {descriptionSpan}
     </a>
   ) : isInternal ? (
-    <UniversalLink href={url}>
-      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
-        {data.title || intl.formatMessage(messages.ButtonText)}
-        {descriptionSpan}
-      </Button>
+    <UniversalLink href={url} className={buttonClasses}>
+      {data.title || intl.formatMessage(messages.ButtonText)}
+      {descriptionSpan}
     </UniversalLink>
   ) : isExternal ? (
-    <a href={url} target='_blank' rel='noopener noreferrer'>
-      <Button className={cx('button', data.align, data.emphasis, data.textPosition)} size={data.size}>
-        {data.title || intl.formatMessage(messages.ButtonText)}
-        {descriptionSpan}
-      </Button>
+    <a href={url} target='_blank' rel='noopener noreferrer' className={buttonClasses}>
+      {data.title || intl.formatMessage(messages.ButtonText)}
+      {descriptionSpan}
     </a>
   ) : null;
 
   return (
     <div className={cx('block __button', className)}>
-      <div className="button container">
+      <div className="button container block-inner-container">
         <div className={cx(`align ${data?.inneralign}`)}>{linkElement}</div>
       </div>
     </div>

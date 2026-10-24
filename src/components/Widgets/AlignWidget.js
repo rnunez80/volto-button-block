@@ -2,7 +2,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { FormFieldWrapper } from '@plone/volto/components';
 import { Icon } from '@plone/volto/components';
-import { Button } from 'semantic-ui-react';
+import cx from 'classnames';
 import imageLeftSVG from '@plone/volto/icons/image-left.svg';
 import imageRightSVG from '@plone/volto/icons/image-right.svg';
 import imageFitSVG from '@plone/volto/icons/image-fit.svg';
@@ -59,19 +59,21 @@ const AlignWidget = (props) => {
   return (
     <FormFieldWrapper {...props} className="align-widget">
       <div className="align-buttons">
-        {actions.map((action) => (
-          <Button.Group key={action}>
-            <Button
-              icon
-              basic
-              aria-label={intl.formatMessage(messages[action])}
-              onClick={() => onChange(id, action)}
-              active={(action === 'center' && !value) || value === action}
-            >
-              <Icon name={ICON_MAP[action]} size="24px" />
-            </Button>
-          </Button.Group>
-        ))}
+        {actions.map((action) => {
+          const isActive = (action === 'center' && !value) || value === action;
+          return (
+            <div className="ui buttons basic" key={action}>
+              <button
+                type="button"
+                className={cx('ui button icon basic', { active: isActive })}
+                aria-label={intl.formatMessage(messages[action])}
+                onClick={() => onChange(id, action)}
+              >
+                <Icon name={ICON_MAP[action]} size="24px" />
+              </button>
+            </div>
+          );
+        })}
       </div>
     </FormFieldWrapper>
   );
