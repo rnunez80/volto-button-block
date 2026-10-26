@@ -1,16 +1,15 @@
 # Change Log
 
-## 2.0.1 (unreleased)
-
-### Breaking
+## 2.1.0 (2026-10-24)
 
 ### Feature
+- **Alignment & Sizing Parity:** Enhanced button block edit and view styling in `main.less` to ensure identical padding, margins, and sizing between edit canvas and published view.
+- **Default Text Alignment:** Set default button text alignment to center.
+- **Theme Overrides:** Added theme-level color and style options including gray and white variants.
 
-### Bugfix
+### Bugfix & Compatibility
+- **Volto 19 Compatibility:** Updated `peerDependencies` to support `@plone/volto` 17, 18, and 19 (`>=17.0.0 || >=18.0.0-alpha.0 || >=19.0.0-alpha.0`).
 
-### Internal
-
-- Update to use latest `@plone/scripts` @sneridagh
 
 ## 2.0.0 (2022-06-09)
 

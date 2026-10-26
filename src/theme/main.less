@@ -15,8 +15,10 @@
     }
 
     &.full {
-      button {
-        width: 100%;
+      button,
+      a,
+      .ui.button {
+        width: 100% !important;
       }
     }
   }
@@ -53,6 +55,12 @@
 .__button .ui.button {
   box-shadow: 0 2px 8px 0 #00000025 !important;
   border: 1px solid transparent;
+  height: auto;
+  min-height: 2.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .ui.button.white {
@@ -85,13 +93,17 @@
   color: #5a5a5a;
 }
 
-button.ui.button.left {
+button.ui.button.left,
+a.ui.button.left,
+.ui.button.left {
   text-align: left;
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
 
-button.ui.button.right {
+button.ui.button.right,
+a.ui.button.right,
+.ui.button.right {
   text-align: right;
   padding-left: 1em !important;
   padding-right: 1em !important;
