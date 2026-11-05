@@ -32,7 +32,7 @@ const View = ({ data, isEditMode, className }) => {
   const isMailto = hasLink && urlRaw.startsWith('mailto:');
   const isDownload = hasLink && urlRaw.includes('@@download');
   const isInternal = hasLink && isInternalURL(urlRaw);
-  const isExternal = hasLink && (/^(http|https):/.test(urlRaw) && !isDownload);
+  const isExternal = hasLink && /^(http|https):/.test(urlRaw) && !isDownload;
 
   // Flatten the URL if present
   const url = hasLink ? flattenToAppURL(urlRaw) : '';
@@ -41,7 +41,7 @@ const View = ({ data, isEditMode, className }) => {
   const descriptionSpan = data.description ? (
     <>
       <br />
-      <span className='button-desc'>{data.description}</span>
+      <span className="button-desc">{data.description}</span>
     </>
   ) : null;
 
@@ -66,7 +66,12 @@ const View = ({ data, isEditMode, className }) => {
       {descriptionSpan}
     </a>
   ) : isDownload ? (
-    <a href={url} target='_blank' rel='noopener noreferrer' className={buttonClasses}>
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={buttonClasses}
+    >
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
     </a>
@@ -76,7 +81,12 @@ const View = ({ data, isEditMode, className }) => {
       {descriptionSpan}
     </UniversalLink>
   ) : isExternal ? (
-    <a href={url} target='_blank' rel='noopener noreferrer' className={buttonClasses}>
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={buttonClasses}
+    >
       {data.title || intl.formatMessage(messages.ButtonText)}
       {descriptionSpan}
     </a>

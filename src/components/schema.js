@@ -36,7 +36,7 @@ const messages = defineMessages({
   textposition: {
     id: 'textposition',
     defaultMessage: 'Text Alignment',
-  }
+  },
 });
 
 export const ButtonSchema = (props) => {
@@ -48,7 +48,15 @@ export const ButtonSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'description', 'href', 'inneralign', 'textPosition', 'emphasis', 'size'],
+        fields: [
+          'title',
+          'description',
+          'href',
+          'inneralign',
+          'textPosition',
+          'emphasis',
+          'size',
+        ],
       },
     ],
 
