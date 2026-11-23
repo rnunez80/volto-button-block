@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.2.0 (2026-11-23)
+
+### Feature
+- **Stacked Title & Description:** Button titles and optional descriptions now render as vertically stacked lines. `View.jsx` wraps the title in a `button-title` span and the description in a `button-desc` span, and the button uses a flex column layout (`flex-direction: column` with a `0.25em` gap) instead of the previous `<br />` separator.
+- **Left/Right Alignment:** Left- and right-aligned buttons now pin the stacked title/description to the top-left / top-right respectively (`align-items: flex-start` / `align-items: flex-end`).
+
+### Bugfix
+- **Consistent Title/Description Spacing:** Removed the fragile `<br />` + inline description markup; the `0.25em` flex `gap` keeps the spacing consistent across all alignments and edit/view modes.
+
 ## 2.1.0 (2026-10-24)
 
 ### Feature

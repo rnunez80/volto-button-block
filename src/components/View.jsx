@@ -37,12 +37,15 @@ const View = ({ data, isEditMode, className }) => {
   // Flatten the URL if present
   const url = hasLink ? flattenToAppURL(urlRaw) : '';
 
-  // Description span with line break
+  const titleSpan = (
+    <span className="button-title">
+      {data.title || intl.formatMessage(messages.ButtonText)}
+    </span>
+  );
+
+  // Description span
   const descriptionSpan = data.description ? (
-    <>
-      <br />
-      <span className="button-desc">{data.description}</span>
-    </>
+    <span className="button-desc">{data.description}</span>
   ) : null;
 
   const buttonClasses = cx(
@@ -57,12 +60,12 @@ const View = ({ data, isEditMode, className }) => {
   // Determine the link element
   const linkElement = isEditMode ? (
     <button type="button" className={buttonClasses}>
-      {data.title || intl.formatMessage(messages.ButtonText)}
+      {titleSpan}
       {descriptionSpan}
     </button>
   ) : isMailto ? (
     <a href={url} className={buttonClasses}>
-      {data.title || intl.formatMessage(messages.ButtonText)}
+      {titleSpan}
       {descriptionSpan}
     </a>
   ) : isDownload ? (
@@ -72,12 +75,12 @@ const View = ({ data, isEditMode, className }) => {
       rel="noopener noreferrer"
       className={buttonClasses}
     >
-      {data.title || intl.formatMessage(messages.ButtonText)}
+      {titleSpan}
       {descriptionSpan}
     </a>
   ) : isInternal ? (
     <UniversalLink href={url} className={buttonClasses}>
-      {data.title || intl.formatMessage(messages.ButtonText)}
+      {titleSpan}
       {descriptionSpan}
     </UniversalLink>
   ) : isExternal ? (
@@ -87,7 +90,7 @@ const View = ({ data, isEditMode, className }) => {
       rel="noopener noreferrer"
       className={buttonClasses}
     >
-      {data.title || intl.formatMessage(messages.ButtonText)}
+      {titleSpan}
       {descriptionSpan}
     </a>
   ) : null;
